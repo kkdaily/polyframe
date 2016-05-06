@@ -1,0 +1,134 @@
+body {
+    background-color: #FFFFFF;
+}
+
+/*=== 404 page ===*/
+#otherwise {
+    height: 80vh;
+    overflow: hidden;
+}
+#otherwise h1 {
+    font-size: 150px; 
+    margin-bottom: 0px; 
+    color: #454955; 
+    text-shadow: 0px 1px 2px rgba(150, 150, 150, 1);
+}
+#otherwise h5 {
+    margin-top: 0px; 
+    color: #454955;
+}
+/*=================*/
+
+/*=== home page ===*/
+#home h2, #home h4 {
+    color: #403D39;
+}
+#home .editor-nav-btn {
+    background-color: #F45B69 !important;
+    font-size: 20px;
+    border-radius: 10rem !important;
+    border: none !important;
+    color: white !important;
+    text-transform: none !important;
+}
+/*==================*/
+
+/*=== editor page ===*/
+#editor h2 {
+    color: #403D39;
+}
+#image-frame #spinner {
+    background-color: #F3EFF5; 
+    margin: auto; 
+    max-width: 100%; 
+    max-height: 60vh; 
+    background-color: white;
+}
+#image-frame .valign-wrapper {
+    height: 60vh !important; 
+    width: 100% !important; 
+    background-color: white;
+}
+#image-frame #previewImage {
+    background-color: #F3EFF5; 
+    margin: auto; max-width: 100%; 
+    max-height: 60vh;
+}
+#image-frame canvas {
+    background-color: #454955; 
+    margin: auto; 
+    max-width: 100%; 
+    max-height: 60vh; 
+}
+#image-frame #spinner, #image-frame .valign-wrapper, #image-frame #previewImage, #image-frame canvas {
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+}
+#editor .editor-controls .card-panel {
+    height: 15vh; 
+    margin: 0px;
+    border-radius: 0px !important;
+}
+#editor .editor-controls .card-panel > div {
+    height: 0px;
+    width: 100%;
+}
+#editor .editor-controls [type="checkbox"].filled-in:checked+label:after {
+    border: 2px solid #403D39 !important;
+    background-color: #403D39!important;
+}
+#editor .editor-controls .polygon-btn {
+    text-transform: none !important;
+    width: 100%;
+}
+#editor #world {
+    max-width: 1024px;
+}
+#eidtor #editor-window {
+    height: 60vh;
+    background-color: white;
+}
+#editor .editor-controls input[type="range"]:active::-moz-range-thumb {
+    background-color: #403D39 !important;
+}
+#editor .editor-controls input[type='range']::-webkit-slider-thumb {
+    background-color: #403D39 !important;
+}
+#editor .thumb.active, .thumb {
+    background-color: rgba(0, 0, 0, 0) !important;
+}
+/*=================*/
+
+/*=== colors ===*/
+
+/* light red */
+.color-1 {
+    background-color: #F45B69 !important;
+    color: white !important;
+}
+/* dark grey */
+.color-2 {
+    background-color: #403D39 !important;
+    color: white !important;
+}
+/* grey */
+.color-3 {
+    background-color: #454955 !important;
+    color: #F3EFF5 !important;
+}
+/*=================*/
+
+/*=== buttons ===*/
+.btn {
+    text-transform: none !important;
+}
+/*===============*/
+
+/*=== helper classes ===*/
+.vertical-center {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+/*======================*/
