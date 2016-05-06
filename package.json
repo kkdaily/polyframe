@@ -1,0 +1,36 @@
+{
+  "name": "polyframe",
+  "version": "1.0.0",
+  "description": "angular app for converting images to low-polygon",
+  "keywords": [
+    "angularjs",
+    "angular",
+    "app",
+    "polygon",
+    "low-polygon",
+    "low-poly",
+    "generator"
+  ],
+  "main": "public/js/app.js",
+  "author": "kathleen daily",
+  "license": "MIT",
+  "scripts": {
+    "dev": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kathleendaily/polyframe.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kathleendaily/polyframe/issues"
+  },
+  "dependencies": {
+    "angular": "^1.3.15",
+    "angular-ui-router": "^0.2.15",
+    "jquery": "*",
+    "materialize-css": "^0.97.6"
+  },
+  "devDependencies": {
+    "lite-server": "^2.2"
+  }
+}
