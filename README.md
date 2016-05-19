@@ -10,7 +10,11 @@ Clone the repository.
 $ git clone https://github.com/kathleendaily/polyframe.git
 ```
 
-Then, `cd` into the directory where it was cloned, and run `npm install`.
+Then, `cd` into the directory where it was cloned, and run 
+
+```bash
+$ npm install
+```
 
 ## Run Locally
 
