@@ -1,6 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const Home = () => 
+function Home()
 {
     return (
         <div className="container" id="home">
@@ -19,9 +20,11 @@ const Home = () =>
                 </div>
             </div>
             <div className="row center-align">
-                <div ui-sref="editor" className="btn-large editor-nav-btn">
-                    Create Now
-                </div>
+                <Link to="/editor/">
+                    <div className="btn-large editor-nav-btn">
+                        Create Now
+                    </div>
+                </Link>
             </div>
         </div>
     )
