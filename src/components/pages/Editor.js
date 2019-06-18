@@ -1,62 +1,82 @@
 import React, { Component } from 'react'
+import EditorControls from '../containers/EditorControls'
+import EditorImageViewer from '../containers/EditorImageViewer';
 
 class Editor extends Component
 {
+    constructor()
+    {
+        this.state = {
+            //display empty image frame and hide spinner initially
+            preview: false,
+            noImage: true,
+            loadingImage: false,
+            canvasHeight: '',
+            canvasWidth: '',
+            userImg: '',
+            polygonSize: 20, //set 'polygon density' slider value to 20
+            showVertices: true //set 'display lines' checkbox as checked
+        }
+
+        //detect when user uploads image to file input
+        var _URL = window.URL || window.webkitURL; // ??? wtf
+    }
+
+    onImageUpload()
+    {
+        angular.element("#userImg").change(function (e) {
+            var file, img;
+            if ((file = this.files[0])) {
+                //create preview of image uploaded in frame
+                img = new Image();
+                img.onload = function () {
+                    $scope.canvasHeight = this.height;
+                    $scope.canvasWidth = this.width;
+                    document.getElementById("previewImage").src = img.src;
+                    $scope.previewImage = true;
+                    $scope.$apply();
+                };
+                img.src = _URL.createObjectURL(file);
+            }
+        });
+    }
+
+    /* convert image to low-poly when 'Polygon it' button is clicked
+    using delaunay triangulation and harris corner detection */
+    polyframe()
+    {
+        //display loading spinner while creating low-poly canvas
+        this.setState({
+            noImage: false,
+            loadingImage: true,
+            previewImage: false
+        })
+
+        this.clearPreviousImage()
+    }
+
+    clearPreviousImage()
+    {
+        var canvas = document.getElementById("canvas"),
+        ctx = canvas.getContext("2d");
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
     render()
     {
         return (
-            <div class="container" id="editor">
-                <div class="row">
-                    <div class="center-align">
+            <div className="container" id="editor">
+                <div className="row">
+                    <div className="center-align">
                         <h2>Polyframe</h2>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col m8 s12" id="image-frame">
-                        <div id="spinner" ng-show="loadingImage" ng-style="{'height': canvasHeight, 'width': canvasWidth}"></div>
-                        <div ng-show="!loadingImage" class="valign-wrapper">
-                            <img id="previewImage" ng-show="previewImage" class="responsive-img valign" />
-                            <canvas id="canvas" class="responsive-img valign" ng-show="!previewImage && !loadingImage" height="{{canvasHeight}}" width="{{canvasWidth}}"></canvas>
-                        </div>
+                <div className="row">
+                    <div className="col m8 s12">
+                        <EditorImageViewer></EditorImageViewer>
                     </div>
-                    <div class="col s12 m4 editor-controls">
-                        <div class="card-panel">
-                            <div class="col m12">
-                                <form action="#">
-                                    <div class="file-field input-field">
-                                        <div class="btn color-2">
-                                            <span>Image</span>
-                                            <input type="file" id="userImg" fileread="userImg" />
-                                        </div>
-                                        <div class="file-path-wrapper">
-                                            <input class="file-path" type="text" />
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="card-panel valign-wrapper">
-                            <div class="col m12">
-                                <form action="#" class="valign center-align">
-                                    <input type="checkbox" class="filled-in color-2" id="test6" checked="checked" ng-model="showVertices" />
-                                    <label for="test6">Display lines</label>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="card-panel">
-                            <div class="col m12">
-                                <form action="#">
-                                    <p class="range-field">
-                                    <input type="range" id="test5" min="10" max="100" ng-model="polygonSize" />
-                                    </p>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="card-panel">
-                            <button class="btn-large polygon-btn color-1 center-align" ng-click="polyframe()" ng-disabled="userImg.length < 1">
-                                Polygon it
-                            </button>
-                        </div>
+                    <div className="col s12 m4">
+                        <EditorControls onImageUpload={this.onImageUpload}></EditorControls>
                     </div>   
                 </div>
 
