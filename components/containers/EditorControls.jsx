@@ -41,7 +41,7 @@ class EditorControls extends Component {
           </div>
         </div>
         <div className="card-panel">
-          <button className="btn-large polygon-btn color-1 center-align" ng-click="polyframe()" ng-disabled="userImg.length < 1">
+          <button className="btn-large polygon-btn color-1 center-align" onClick={this.props.polyframe} ng-disabled="userImg.length < 1">
                         Polygon it
           </button>
         </div>

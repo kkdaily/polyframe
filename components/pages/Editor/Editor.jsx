@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import EditorControls from '../containers/EditorControls';
-import EditorImageViewer from '../containers/EditorImageViewer';
+import EditorControls from '../../containers/EditorControls';
+import EditorImageViewer from '../../containers/EditorImageViewer';
 
 class Editor extends Component {
   constructor() {
@@ -43,6 +43,7 @@ class Editor extends Component {
   /* convert image to low-poly when 'Polygon it' button is clicked
     using delaunay triangulation and harris corner detection */
   polyframe() {
+    console.log('polyframe btn pressed');
     // display loading spinner while creating low-poly canvas
     this.setState({
       noImage: false,
@@ -72,7 +73,7 @@ class Editor extends Component {
             <EditorImageViewer />
           </div>
           <div className="col s12 m4">
-            <EditorControls onImageUpload={this.onImageUpload} />
+            <EditorControls onImageUpload={this.onImageUpload} polyframe={this.polyframe} />
           </div>
         </div>
 
