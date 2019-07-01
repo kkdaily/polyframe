@@ -2,7 +2,12 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.jsx',
+  entry: './index.jsx',
+  output: {
+    filename: 'bundle.js',
+    sourceMapFilename: '[file].map',
+    path: path.resolve('dist/'),
+  },
   module: {
     rules: [
       {
@@ -33,15 +38,28 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[path][name].[ext]',
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: './public/index.html',
+      template: './index.html',
       filename: './index.html',
     }),
   ],
+  devtool: 'inline-source-map',
   devServer: {
+    contentBase: path.resolve(__dirname),
     historyApiFallback: true,
   },
 };
