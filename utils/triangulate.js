@@ -9,16 +9,9 @@ const EPSILON = 1.0 / 1048576.0;
 
 function supertriangle(vertices) {
   let xmin = Number.POSITIVE_INFINITY;
-
-
   let ymin = Number.POSITIVE_INFINITY;
-
-
   let xmax = Number.NEGATIVE_INFINITY;
-
-
   let ymax = Number.NEGATIVE_INFINITY;
-
 
   let i; let dx; let dy; let dmax; let xmid; let
     ymid;
@@ -45,28 +38,13 @@ function supertriangle(vertices) {
 
 function circumcircle(vertices, i, j, k) {
   const x1 = vertices[i][0];
-
-
   const y1 = vertices[i][1];
-
-
   const x2 = vertices[j][0];
-
-
   const y2 = vertices[j][1];
-
-
   const x3 = vertices[k][0];
-
-
   const y3 = vertices[k][1];
-
-
   const fabsy1y2 = Math.abs(y1 - y2);
-
-
   const fabsy2y3 = Math.abs(y2 - y3);
-
 
   let xc; let yc; let m1; let m2; let mx1; let mx2; let my1; let my2; let dx; let
     dy;
@@ -130,7 +108,6 @@ function dedup(edges) {
 Delaunay = {
   triangulate(vertices, key) {
     const n = vertices.length;
-
 
     let i; let j; let indices; let st; let open; let closed; let edges; let dx; let dy; let a; let b; let
       c;
@@ -227,25 +204,15 @@ Delaunay = {
         || (p[1] > tri[0][1] && p[1] > tri[1][1] && p[1] > tri[2][1])) return null;
 
     const a = tri[1][0] - tri[0][0];
-
-
     const b = tri[2][0] - tri[0][0];
-
-
     const c = tri[1][1] - tri[0][1];
-
-
     const d = tri[2][1] - tri[0][1];
-
-
     const i = a * d - b * c;
 
     /* Degenerate tri. */
     if (i === 0.0) return null;
 
     const u = (d * (p[0] - tri[0][0]) - b * (p[1] - tri[0][1])) / i;
-
-
     const v = (a * (p[1] - tri[0][1]) - c * (p[0] - tri[0][0])) / i;
 
     /* If we're outside the tri, fail. */
@@ -255,6 +222,4 @@ Delaunay = {
   },
 };
 
-export {
-  Delaunay,
-};
+export default Delaunay;
