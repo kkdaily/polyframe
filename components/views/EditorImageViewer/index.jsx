@@ -2,17 +2,10 @@ import React, { Component } from 'react';
 import {
   Container, Image, Segment, Header, Icon, Button
 } from 'semantic-ui-react';
-import './index.less';
 
 class EditorImageViewer extends Component {
   constructor(props) {
     super(props);
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.showPreviewImage !== this.props.showPreviewImage) {
-      this.props.getChildRefs(this.refs);
-    }
   }
 
   render() {

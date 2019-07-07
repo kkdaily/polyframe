@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import {
   Container, Segment, Button, Checkbox
 } from 'semantic-ui-react';
-import Slider from '../Slider/index';
-import './index.less';
+import Slider from '../../views/Slider/index';
 
 class EditorControls extends Component {
   constructor(props) {

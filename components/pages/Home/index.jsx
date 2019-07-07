@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import {
   Container, Grid, Image, Button, Header,
 } from 'semantic-ui-react';
-import './index.less';
 
 function Home() {
   return (

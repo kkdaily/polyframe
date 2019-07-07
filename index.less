@@ -1,10 +1,15 @@
+/* Colors */
+@primary: #F45B69;
+@secondary: #403d39;
+
+/* Global Styles */
 h1, h2, h3, h4, h5, h6, p, span {
     font-family: 'Open Sans', sans-serif !important;
-    color: #292929 !important;
+    color: @secondary !important;
 }
 
 .button.primary {
-    background-color: #F45B69 !important;
+    background-color: @primary !important;
 }
 
 *[class*="margin collapsed"] {
@@ -18,3 +23,9 @@ h1, h2, h3, h4, h5, h6, p, span {
 .hidden {
     display: none !important;
 }
+
+@import './components/pages/Editor/index.less';
+@import './components/pages/Home/index.less';
+@import './components/views/EditorControls/index.less';
+@import './components/views/EditorImageViewer/index.less';
+@import './components/views/Slider/index.less';

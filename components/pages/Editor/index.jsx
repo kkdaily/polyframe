@@ -5,26 +5,24 @@ import {
 import EditorControls from '../../views/EditorControls';
 import EditorImageViewer from '../../views/EditorImageViewer';
 import { polygonizeImage } from '../../../utils/index.js';
-import './index.less';
 
 class Editor extends Component {
   constructor() {
     super();
     this.state = {
-      // display empty image frame and hide spinner initially
       showPreviewImage: true,
       loading: false,
       canvasHeight: '',
       canvasWidth: '',
       userImg: '',
-      polygonSize: 20, // set 'polygon density' slider value to 20
-      showLines: true, // set 'display lines' checkbox as checked
+      polygonSize: 20,
+      showLines: true,
       previewImageSrc: '',
       childRefs: {}
     };
 
     // detect when user uploads image to file input
-    this._URL = window.URL || window.webkitURL; // ??? wtf
+    this._URL = window.URL || window.webkitURL;
 
     this.polygonIt = this.polygonIt.bind(this);
     this.onImageUpload = this.onImageUpload.bind(this);
@@ -111,14 +109,13 @@ class Editor extends Component {
           </Grid.Row>
           <Grid.Row>
             <Grid.Column width={10}>
-              <EditorImageViewer loading={this.state.loading} getChildRefs={this.getChildRefs} addImage={this.addImage} showPreviewImage={this.state.showPreviewImage} imageSrc={this.state.previewImageSrc} canvasHeight={this.state.canvasHeight} canvasWidth={this.state.canvasWidth} />
+              <EditorImageViewer loading={this.state.loading} addImage={this.addImage} showPreviewImage={this.state.showPreviewImage} imageSrc={this.state.previewImageSrc} canvasHeight={this.state.canvasHeight} canvasWidth={this.state.canvasWidth} />
             </Grid.Column>
             <Grid.Column width={6}>
-              <EditorControls polygonSize={this.state.polygonSize} handleSliderChange={this.handleSliderChange} handleCheckboxChange={this.handleCheckboxChange} getChildRefs={this.getChildRefs} addImage={this.addImage} imageSrc={this.state.previewImageSrc} onImageUpload={this.onImageUpload} polygonIt={this.polygonIt} />
+              <EditorControls polygonSize={this.state.polygonSize} handleSliderChange={this.handleSliderChange} handleCheckboxChange={this.handleCheckboxChange} addImage={this.addImage} imageSrc={this.state.previewImageSrc} onImageUpload={this.onImageUpload} polygonIt={this.polygonIt} getChildRefs={this.getChildRefs} />
             </Grid.Column>
           </Grid.Row>
 
-          {/* </div><!-- harris corner detection --> */}
           <canvas ref={c => (this._canvas = c)} width={this.state.userImg.width} height={this.state.userImg.height} id="world" className="hidden" />
         </Grid>
       </Container>
