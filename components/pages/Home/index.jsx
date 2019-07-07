@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import {
   Container, Grid, Image, Button, Header,
 } from 'semantic-ui-react';
-import './styles.css';
+import './index.less';
 
 function Home() {
   return (
-    <Container textAlign="center">
-      <Grid doubling relaxed stackable verticalAlign="middle" style={{ height: '100vh' }}>
+    <Container className="Home" textAlign="center">
+      <Grid relaxed stackable>
         <Grid.Row>
           <Grid.Column>
             <Header as="h1" className="title">Polyframe</Header>
@@ -16,17 +16,13 @@ function Home() {
           </Grid.Column>
         </Grid.Row>
         <Grid.Row centered>
-          <Grid.Column width={7}>
-            <Image alt="Fall leaves before converting to low-poly" src="images/leaves-original.jpg" rounded />
-          </Grid.Column>
-          <Grid.Column width={7}>
-            <Image alt="Fall leaves after converting to low-poly" src="images/leaves-poly.png" rounded />
-          </Grid.Column>
+          <Image alt="Fall leaves before converting to low-poly" size="large" src="images/leaves-original.jpg" rounded />
+          <Image alt="Fall leaves after converting to low-poly" size="large" src="images/leaves-poly.png" rounded />
         </Grid.Row>
         <Grid.Row>
           <Grid.Column>
             <Link to="/editor/">
-              <Button className="primary" circular size="huge">Create Now</Button>
+              <Button className="primary" size="big">Create Now</Button>
             </Link>
           </Grid.Column>
         </Grid.Row>
