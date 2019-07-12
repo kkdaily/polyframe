@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import {
-  Container, Segment, Button, Checkbox
+  Container, Segment, Button, Checkbox,
 } from 'semantic-ui-react';
-import Slider from '../../views/Slider/index';
+import Slider from '../Slider/index';
 
 class EditorControls extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.getChildRefs(this.refs);
   }
@@ -25,7 +21,7 @@ class EditorControls extends Component {
             <Checkbox checked={this.props.showLines} onChange={this.props.handleCheckboxChange} label="Show Lines" defaultChecked />
           </Segment>
           <Segment padded>
-            <Slider polygonSize={this.props.polygonSize} handleChange={this.props.handleSliderChange}></Slider>
+            <Slider polygonSize={this.props.polygonSize} handleChange={this.props.handleSliderChange} />
           </Segment>
           <Segment padded>
             <Button onClick={this.props.polygonIt} disabled={!this.props.imageSrc} primary>

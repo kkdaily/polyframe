@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import {
-  Container, Grid, Button, Header,
+  Container, Grid, Header,
 } from 'semantic-ui-react';
 import EditorControls from '../../views/EditorControls';
 import EditorImageViewer from '../../views/EditorImageViewer';
-import { polygonizeImage } from '../../../utils/index.js';
+import { polygonizeImage } from '../../../utils/index';
 
 class Editor extends Component {
   constructor() {
@@ -18,11 +18,11 @@ class Editor extends Component {
       polygonSize: 20,
       showLines: true,
       previewImageSrc: '',
-      childRefs: {}
+      childRefs: {},
     };
 
     // detect when user uploads image to file input
-    this._URL = window.URL || window.webkitURL;
+    this.url = window.URL || window.webkitURL;
 
     this.polygonIt = this.polygonIt.bind(this);
     this.onImageUpload = this.onImageUpload.bind(this);
@@ -44,11 +44,11 @@ class Editor extends Component {
         canvasWidth: img.width,
         previewImageSrc: img.src,
         userImg: img,
-        showPreviewImage: true
+        showPreviewImage: true,
       });
     };
 
-    img.src = this._URL.createObjectURL(file);
+    img.src = this.url.createObjectURL(file);
   }
 
   /* convert image to low-poly */
@@ -63,7 +63,7 @@ class Editor extends Component {
     await polygonizeImage(this.state.userImg, this.state.polygonSize, this.state.showLines);
 
     this.setState({
-      loading: false
+      loading: false,
     });
   }
 
@@ -81,19 +81,19 @@ class Editor extends Component {
 
   getChildRefs(childRefs) {
     this.setState({
-      childRefs: Object.assign(this.state.childRefs, childRefs)
+      childRefs: Object.assign(this.state.childRefs, childRefs),
     });
   }
 
   handleCheckboxChange() {
     this.setState({
-      showLines: !this.state.showLines
+      showLines: !this.state.showLines,
     });
   }
 
   handleSliderChange(ev) {
     this.setState({
-      polygonSize: ev.target.value
+      polygonSize: ev.target.value,
     });
   }
 
