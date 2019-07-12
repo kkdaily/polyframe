@@ -10,8 +10,6 @@ Clone the project and run
 $ npm install
 ```
 
-Then
-
 ```bash
 $ npm start
 ```
