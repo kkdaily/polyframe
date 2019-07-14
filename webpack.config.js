@@ -1,4 +1,5 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -37,15 +38,15 @@ module.exports = {
         test: /\.less$/,
         use: [
           {
-            loader: "style-loader"
+            loader: 'style-loader',
           },
           {
-            loader: "css-loader"
+            loader: 'css-loader',
           },
           {
-            loader: "less-loader"
-          }
-        ]
+            loader: 'less-loader',
+          },
+        ],
       },
       {
         test: /\.html$/,
@@ -73,6 +74,12 @@ module.exports = {
       template: './index.html',
       filename: './index.html',
     }),
+    new CopyPlugin([
+      {
+        from: './images',
+        to: './images',
+      },
+    ]),
   ],
   devtool: 'inline-source-map',
   devServer: {
