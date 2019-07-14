@@ -12,7 +12,7 @@ class EditorControls extends Component {
   render() {
     return (
       <Container className="EditorControls">
-        <Segment.Group>
+        <Segment.Group className="controls-group">
           <Segment padded>
             <input ref="imgFile" type="file" id="userImg" onChange={this.props.onImageUpload} />
             <Button onClick={this.props.addImage}>Add Image</Button>
