@@ -6,25 +6,41 @@ import Slider from '../Slider/index';
 
 class EditorControls extends Component {
   componentDidMount() {
-    this.props.getChildRefs(this.refs);
+    const { getChildRefs } = this.props;
+    getChildRefs(this.refs);
   }
 
   render() {
+    const {
+      onImageUpload, addImage, showLines, handleCheckboxChange, polygonSize, handleSliderChange,
+      polygonIt, imageSrc,
+    } = this.props;
+
     return (
       <Container className="EditorControls">
         <Segment.Group className="controls-group">
           <Segment padded>
-            <input ref="imgFile" type="file" id="userImg" onChange={this.props.onImageUpload} />
-            <Button onClick={this.props.addImage}>Add Image</Button>
+            <input
+              ref="imgFile"
+              type="file"
+              id="userImg"
+              onChange={onImageUpload}
+            />
+            <Button onClick={addImage}>Add Image</Button>
           </Segment>
           <Segment padded>
-            <Checkbox checked={this.props.showLines} onChange={this.props.handleCheckboxChange} label="Show Lines" defaultChecked />
+            <Checkbox
+              checked={showLines}
+              onChange={handleCheckboxChange}
+              label="Show Lines"
+              defaultChecked
+            />
           </Segment>
           <Segment padded>
-            <Slider polygonSize={this.props.polygonSize} handleChange={this.props.handleSliderChange} />
+            <Slider polygonSize={polygonSize} handleChange={handleSliderChange} />
           </Segment>
           <Segment padded>
-            <Button onClick={this.props.polygonIt} disabled={!this.props.imageSrc} primary>
+            <Button onClick={polygonIt} disabled={!imageSrc} primary>
               Polygon It
             </Button>
           </Segment>

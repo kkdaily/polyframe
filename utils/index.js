@@ -1,6 +1,6 @@
-import cornerDetection from './cornerDetection.js';
+import cornerDetection from './cornerDetection';
 
-export const polygonizeImage = (userImage, canvasEl, polygonSize, showVertices) => {
+const polygonizeImage = (userImage, canvasEl, polygonSize, showVertices) => {
   const image = new Image();
 
   return new Promise((resolve) => {
@@ -8,3 +8,5 @@ export const polygonizeImage = (userImage, canvasEl, polygonSize, showVertices) 
     image.src = userImage.src;
   });
 };
+
+export default polygonizeImage;

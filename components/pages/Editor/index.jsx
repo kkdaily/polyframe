@@ -4,7 +4,7 @@ import {
 } from 'semantic-ui-react';
 import EditorControls from '../../views/EditorControls';
 import EditorImageViewer from '../../views/EditorImageViewer';
-import { polygonizeImage } from '../../../utils/index';
+import polygonizeImage from '../../../utils/index';
 
 class Editor extends Component {
   constructor() {
@@ -30,6 +30,7 @@ class Editor extends Component {
     this.getChildRefs = this.getChildRefs.bind(this);
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     this.handleSliderChange = this.handleSliderChange.bind(this);
+    this.getCanvasRef = this.getCanvasRef.bind(this);
   }
 
   onImageUpload(e) {
@@ -51,19 +52,14 @@ class Editor extends Component {
     img.src = this.url.createObjectURL(file);
   }
 
-  /* convert image to low-poly */
-  async polygonIt() {
+  getCanvasRef(ref) {
+    this.canvas = ref;
+  }
+
+  getChildRefs(newChildRefs) {
+    const { childRefs } = this.state;
     this.setState({
-      loading: true,
-      showPreviewImage: false,
-    });
-
-    this.clearPreviousImage();
-
-    await polygonizeImage(this.state.userImg, this.state.polygonSize, this.state.showLines);
-
-    this.setState({
-      loading: false,
+      childRefs: Object.assign(childRefs, newChildRefs),
     });
   }
 
@@ -71,23 +67,32 @@ class Editor extends Component {
     const canvas = document.getElementById('userImageCanvas');
     if (canvas) {
       const ctx = canvas.getContext('2d');
-      ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
+      ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
   }
 
-  addImage(e) {
-    this.state.childRefs.imgFile.click();
-  }
+  /* convert image to low-poly */
+  async polygonIt() {
+    const { userImg, polygonSize, showLines } = this.state;
 
-  getChildRefs(childRefs) {
     this.setState({
-      childRefs: Object.assign(this.state.childRefs, childRefs),
+      loading: true,
+      showPreviewImage: false,
+    });
+
+    this.clearPreviousImage();
+
+    await polygonizeImage(userImg, polygonSize, showLines);
+
+    this.setState({
+      loading: false,
     });
   }
 
   handleCheckboxChange() {
+    const { showLines } = this.state;
     this.setState({
-      showLines: !this.state.showLines,
+      showLines: !showLines,
     });
   }
 
@@ -97,26 +102,60 @@ class Editor extends Component {
     });
   }
 
+  addImage() {
+    const { childRefs } = this.state;
+    childRefs.imgFile.click();
+  }
+
   render() {
+    const {
+      loading, showPreviewImage, previewImageSrc, canvasHeight, canvasWidth, polygonSize, userImg,
+    } = this.state;
+
     return (
       <Container className="Editor" textAlign="center">
         <Grid relaxed stackable>
           <Grid.Row>
             <Grid.Column>
-              <Header as="h1" className="title">POLYFRAME</Header>
-              <Header as="h3" className="subtitle margin collapsed">Quick and easy low-polygon art</Header>
+              <Header as="h1" className="title">
+                POLYFRAME
+              </Header>
+              <Header as="h3" className="subtitle margin collapsed">
+                Quick and easy low-polygon art
+              </Header>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
             <Grid.Column width={10}>
-              <EditorImageViewer loading={this.state.loading} addImage={this.addImage} showPreviewImage={this.state.showPreviewImage} imageSrc={this.state.previewImageSrc} canvasHeight={this.state.canvasHeight} canvasWidth={this.state.canvasWidth} />
+              <EditorImageViewer
+                loading={loading}
+                addImage={this.addImage}
+                showPreviewImage={showPreviewImage}
+                imageSrc={previewImageSrc}
+                canvasHeight={canvasHeight}
+                canvasWidth={canvasWidth}
+              />
             </Grid.Column>
             <Grid.Column width={6}>
-              <EditorControls polygonSize={this.state.polygonSize} handleSliderChange={this.handleSliderChange} handleCheckboxChange={this.handleCheckboxChange} addImage={this.addImage} imageSrc={this.state.previewImageSrc} onImageUpload={this.onImageUpload} polygonIt={this.polygonIt} getChildRefs={this.getChildRefs} />
+              <EditorControls
+                polygonSize={polygonSize}
+                handleSliderChange={this.handleSliderChange}
+                handleCheckboxChange={this.handleCheckboxChange}
+                addImage={this.addImage}
+                imageSrc={previewImageSrc}
+                onImageUpload={this.onImageUpload}
+                polygonIt={this.polygonIt}
+                getChildRefs={this.getChildRefs}
+              />
             </Grid.Column>
           </Grid.Row>
-
-          <canvas ref={c => (this._canvas = c)} width={this.state.userImg.width} height={this.state.userImg.height} id="world" className="hidden" />
+          <canvas
+            id="world"
+            className="hidden"
+            ref={this.getCanvasRef}
+            width={userImg.width}
+            height={userImg.height}
+          />
         </Grid>
       </Container>
     );
