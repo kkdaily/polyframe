@@ -2,4 +2,3 @@ node_modules
 dist
 utils/cornerDetection.js
 utils/triangulate.js
-public
