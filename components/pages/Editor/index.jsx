@@ -103,7 +103,7 @@ class Editor extends Component {
         <Grid relaxed stackable>
           <Grid.Row>
             <Grid.Column>
-              <Header as="h1" className="title">Polyframe</Header>
+              <Header as="h1" className="title">POLYFRAME</Header>
               <Header as="h3" className="subtitle margin collapsed">Quick and easy low-polygon art</Header>
             </Grid.Column>
           </Grid.Row>
