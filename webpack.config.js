@@ -89,7 +89,7 @@ module.exports = {
     }),
     new CopyPlugin([
       {
-        from: './images',
+        from: './assets/images',
         to: './images',
       },
     ]),
