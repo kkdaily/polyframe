@@ -12,10 +12,10 @@
   "author": "kathleen daily",
   "license": "MIT",
   "scripts": {
+    "test": "jest",
     "build": "npm run clean && webpack",
     "clean": "rm -rf dist",
     "start": "npm run build && webpack-dev-server --open --mode development",
-    "lint": "eslint --ext .js --ext .jsx .",
     "deploy": "aws s3 sync ./dist s3://polyframe.kathleendaily.com --acl public-read"
   },
   "repository": {
@@ -52,6 +52,7 @@
     "file-loader": "^4.0.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.8.0",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
     "prop-types": "^15.7.2",
