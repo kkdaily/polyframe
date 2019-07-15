@@ -15,7 +15,8 @@
     "build": "npm run clean && webpack",
     "clean": "rm -rf dist",
     "start": "npm run build && webpack-dev-server --open --mode development",
-    "lint": "eslint --ext .js --ext .jsx ."
+    "lint": "eslint --ext .js --ext .jsx .",
+    "deploy": "aws s3 sync ./dist s3://polyframe.kathleendaily.com --acl public-read"
   },
   "repository": {
     "type": "git",
