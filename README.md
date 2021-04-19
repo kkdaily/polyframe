@@ -1,6 +1,11 @@
 # Polyframe
-
 React app for converting images to low-polygon
+
+<img
+  alt="Screenshot of the Polyframe app"
+  src="./assets/images/demo-screenshot.png"
+  width="100%"
+/>
 
 ## Running Locally
 
